@@ -1,5 +1,5 @@
 {
-  "name": "miniapp-detect",
+  "name": "template-name",
   "version": "1.0.0",
   "description": "",
   "main": "dist/app.js",
@@ -13,7 +13,8 @@
     "start:prd": "cross-env MODE=prd node .",
     "dev": "tsc-watch --onSuccess \"npm run start\"",
     "husky": "husky install",
-    "lint:pretty": "pretty-quick --staged"
+    "lint:pretty": "pretty-quick --staged",
+    "server": "nodemon"
   },
   "devDependencies": {
     "@commitlint/cli": "^16.0.2",
@@ -27,6 +28,7 @@
     "@typescript-eslint/parser": "^5.8.0",
     "axios": "^0.24.0",
     "cross-env": "^7.0.3",
+    "esbuild-node-tsc": "^1.8.5",
     "eslint": "^8.6.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-define-config": "^1.2.0",
