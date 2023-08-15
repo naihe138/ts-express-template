@@ -1,31 +1,32 @@
+import mongoose from 'mongoose';
+
 declare global {
+  declare interface IEnv {
+    APP_PORT: number;
+    APP_ENV: 'dev' | 'test' | 'prd';
+    APP_API_PATH: string;
+    MONGODB_RUL: string;
+    USER_JWT_SECRET: string;
+    USER_ADMIN_NAME: string;
+    USER_ADMIN_PASSWORD: string;
+    USER_PASSWORD_SALT: string;
+    EMAIL_SERVICE: string;
+    EMAIL_ACCOUNT: string;
+    EMAIL_PASSWORD: string;
+    REDIS_PORT: string;
+    REDIS_PASSWORD: string;
+    QI_NIU_ACCESS_KEY: string;
+    QI_NIU_SECRET_KEY: string;
+    QI_NIU_BUCKET: string;
+    QI_NIU_ORIGIN: string;
+    QI_NIU_UPLOAD_URL: string;
+  }
+
   namespace NodeJS {
-    interface ProcessEnv {
-      SERVER_PORT: number;
-      NODE_ENV: 'sit' | 'uat' | 'prd';
-    }
+    interface ProcessEnv extends IEnv {}
   }
 
-  const __APP_INFO__: {
-    pkg: {
-      name: string;
-      version: string;
-      dependencies: Recordable<string>;
-      devDependencies: Recordable<string>;
-    };
-    lastBuildTime: string;
-  };
-  declare interface Window {
-    __APP__: App<Element>;
-    reportEvent: {
-      enterPage: (url: string, query: string) => void;
-      init: (config: any) => void;
-      reportEvent: (event: string, name: string, params: Recordable, cbSuccess?: Fn, _cbFail?: Fn) => void;
-      leavePage: (url: string, query: string) => void;
-    };
-  }
-
-  export type Writable<T> = {
+  declare type Writable<T> = {
     -readonly [P in keyof T]: T[P];
   };
 
@@ -35,26 +36,18 @@ declare global {
   declare type ReadonlyRecordable<T = any> = {
     readonly [key: string]: T;
   };
-  declare type Indexable<T = any> = {
-    [key: string]: T;
-  };
-  declare type DeepPartial<T> = {
-    [P in keyof T]?: DeepPartial<T[P]>;
-  };
   declare type TimeoutHandle = ReturnType<typeof setTimeout>;
   declare type IntervalHandle = ReturnType<typeof setInterval>;
-
-  declare interface ChangeEvent extends Event {
-    target: HTMLInputElement;
-  }
-
-  declare interface WheelEvent {
-    path?: EventTarget[];
-  }
 
   declare function parseInt(s: string | number, radix?: number): number;
 
   declare function parseFloat(string: string | number): number;
+
+  namespace Express {
+    export interface Request {
+      userId: string;
+    }
+  }
 }
 
 export {};

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SSE Example</title>
+  </head>
+  <body>
+    <div id="output"></div>
+
+    <script>
+      const outputDiv = document.getElementById('output');
+
+      const eventSource = new EventSource('http://localhost:7901/api/test/ask');
+      let str = '';
+      eventSource.onmessage = function (event) {
+        console.log(event.data);
+        const eventData = JSON.parse(event.data);
+        const message = eventData.content;
+        if (eventData.finish) {
+          eventSource.close();
+        } else {
+          str += message;
+          outputDiv.innerText = str;
+        }
+      };
+
+      eventSource.onerror = function (event) {
+        console.error('SSE error:', event);
+      };
+
+      setTimeout(() => {
+        console.log('我关闭了');
+        eventSource.close();
+      }, 10 * 1000);
+    </script>
+  </body>
+</html>

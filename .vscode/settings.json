@@ -4,9 +4,9 @@
   //============== 编辑器 ===================
   //========================================
   // 光标的动画样式
-  // "editor.cursorBlinking": "phase",
+  "editor.cursorBlinking": "phase",
   // 光标是否启用平滑插入的动画
-  // "editor.cursorSmoothCaretAnimation": true,
+  "editor.cursorSmoothCaretAnimation": "on",
   // vscode重命名文件或移动文件自动更新导入路径
   "typescript.updateImportsOnFileMove.enabled": "always",
   // 自动替换为当前项目的内置的typescript版本
@@ -120,10 +120,16 @@
   // Eslint的选项
   "eslint.options": {
     // 要检查的文件拓展名数组
-    "extensions": [".js", ".ts"]
+    "extensions": [
+      ".js",
+      ".ts"
+    ]
   },
   // Eslint校验的
-  "eslint.validate": ["javascript", "typescript"],
+  "eslint.validate": [
+    "javascript",
+    "typescript"
+  ],
   //========================================
   //============== Prettier ================
   //========================================

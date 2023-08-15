@@ -1,7 +1,0 @@
-{
-  "watch": ["src"],
-  "ignore": ["src/**/*.test.ts"],
-  "ext": "ts,mjs,js,json,graphql",
-  "exec": "etsc --config=etsc.config.build.js && cross-env MODE=sit node ./dist/app.js",
-  "legacyWatch": true
-}
